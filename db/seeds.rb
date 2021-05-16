@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 case Rails.env
-when "development"
-  puts "-"*100
-  puts "SEEDING"
+when 'development'
+  puts '-'*100
+  puts 'SEEDING'
   
   desmond = User.create(email: 'desmond17@protonmail.com', password: 'password')
   desmond = User.create(email: 'ammad.fareed303@gmail.com', password: 'ammad303')
@@ -28,29 +28,29 @@ when "development"
 
   instrument_type = TagType.find_by(name: 'instrument', published: true)
 
-  instruments_tags = ["piano", "keyboard", "digital piano", "guitar",
-                      "electric guitar", "bass", "bass guitar",
-                      "upright bass", "electric bass", "fiddle", "violin",
-                      "viola", "voice", "singing", "songwriting",
-                      "music theory", "mandolin", "ukulele", "cello",
-                      "horn", "tuba", "trumpet", "euphonium",
-                      "english horn", "french horn", "trombone", "drums",
-                      "percussion", "drumming", "clarinet", "oboe",
-                      "production", "music production", "audio engineering",
-                      "fl studio", "ableton", "ableton live",
-                      "logic", "logic pro", "logic pro x", "pro tools",
-                      "sax", "saxophone", "tenor sax", "tenor saxophone",
-                      "soprano sax", "soprano saxophone", "alto sax",
-                      "alto saxophone", "baritone sax", "baritone saxophone",
-                      "flute", "euphonium", "bagpipes", "harp"]
+  instruments_tags = ['piano', 'keyboard', 'digital piano', 'guitar',
+                      'electric guitar', 'bass', 'bass guitar',
+                      'upright bass', 'electric bass', 'fiddle', 'violin',
+                      'viola', 'voice', 'singing', 'songwriting',
+                      'music theory', 'mandolin', 'ukulele', 'cello',
+                      'horn', 'tuba', 'trumpet', 'euphonium',
+                      'english horn', 'french horn', 'trombone', 'drums',
+                      'percussion', 'drumming', 'clarinet', 'oboe',
+                      'production', 'music production', 'audio engineering',
+                      'fl studio', 'ableton', 'ableton live',
+                      'logic', 'logic pro', 'logic pro x', 'pro tools',
+                      'sax', 'saxophone', 'tenor sax', 'tenor saxophone',
+                      'soprano sax', 'soprano saxophone', 'alto sax',
+                      'alto saxophone', 'baritone sax', 'baritone saxophone',
+                      'flute', 'euphonium', 'bagpipes', 'harp']
 
   instruments_tags.each do |instrument|
     Tag.create( name: instrument, tag_type_id: instrument_type.id, track_id: nil )
   end
-when "test"
-  puts "-"*100
-  puts "No seed yet"
-when "production"
-  puts "-"*100
-  puts "No seed yet"
+when 'test'
+  puts '-'*100
+  puts 'No seed yet'
+when 'production'
+  puts '-'*100
+  puts 'No seed yet'
 end
