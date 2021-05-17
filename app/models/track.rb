@@ -10,6 +10,7 @@ class Track < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :attachments, dependent: :destroy
   has_many :rebounds, class_name: 'Track', foreign_key: 'rebound_track_id'
   belongs_to :rebound_from, class_name: 'Track', foreign_key: 'rebound_track_id', optional: true
 
@@ -28,8 +29,12 @@ class Track < ApplicationRecord
     last_track.present? ? last_track.og_track : self
   end
 
+  def self_and_rebounds
+    standard_rebounds + upward_rebounds
+  end
+
   def all_rebounds
-    all = standard_rebounds + upward_rebounds
+    all = self_and_rebounds
     all.length > 1 ? all : []
   end
 
