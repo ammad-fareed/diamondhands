@@ -8,6 +8,8 @@ import Baked from "./routes/Baked";
 import Artists from "./routes/Artists";
 import HomePage from "./routes/HomePage";
 import AboutUs from "./routes/AboutUs";
+import Instrument from "./routes/Instrument";
+
 import $ from "jquery";
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -115,6 +117,7 @@ class Home extends React.Component {
             <Route path="/baked" component={Baked} />
             <Route path="/artists" component={Artists} />
             <Route path="/about-us" component={AboutUs} />
+            <Route path="/instruments" component={Instrument} />
           </Switch>
           <div className="footer">
             <Player />
