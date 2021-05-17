@@ -13,6 +13,7 @@ class Track < ApplicationRecord
   has_many :attachments, dependent: :destroy
   has_many :rebounds, class_name: 'Track', foreign_key: 'rebound_track_id'
   belongs_to :rebound_from, class_name: 'Track', foreign_key: 'rebound_track_id', optional: true
+  has_many  :tags
 
   scope :baked, -> { joins(:likes).where("likes.baked = true") }
 
