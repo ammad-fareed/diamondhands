@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   scope :api, module: :api do
     scope :v1, module: :v1 do
-      resources :instruments, only: [ :index ]
+      resources :instruments, only: [ :index, :create ]
     end
   end
 
