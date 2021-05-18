@@ -75,6 +75,7 @@ class Home extends React.Component {
     this.state = {
       menuVisible: window.innerWidth <= 600 ? false : true,
       redirectToAboutUs: false,
+      user: this.props.current_user
     };
 
     $(".about-us-link").on("click", (e) => {
@@ -117,7 +118,7 @@ class Home extends React.Component {
             <Route path="/baked" component={Baked} />
             <Route path="/artists" component={Artists} />
             <Route path="/about-us" component={AboutUs} />
-            <Route path="/instruments" component={Instrument} />
+            <Route path="/instruments" component={()=> <Instrument user={this.state.user} />}  />
           </Switch>
           <div className="footer">
             <Player />

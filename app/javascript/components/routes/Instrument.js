@@ -54,7 +54,8 @@ class InstrumentTag extends React.Component {
 
 		this.state = {
 			data: null,
-			selectedTags: [],			
+			selectedTags: [],
+			user: this.props.user		
 		};
 	}
 
@@ -75,7 +76,7 @@ class InstrumentTag extends React.Component {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ user_id: 1 })
+			body: JSON.stringify({ user_id: this.state.user.id })
 		})
 		.then(res => res.json() )
 		.then(data => this.setState({ selectedTags: data }))
@@ -95,31 +96,33 @@ class InstrumentTag extends React.Component {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ data: { name: elem.name, id: elem.id, user_id: 1, tag_type_id: elem.tag_type_id }})
+			body: JSON.stringify({ data: { name: elem.name, id: elem.id, user_id: this.state.user.id, tag_type_id: elem.tag_type_id }})
 		})
 	}
 
 	render() {
-		let data = initialDataList(this.state.data, this.state.selectedTags);
+		let data = initialDataList(this.state.data, this.state.selectedTags);		
     return(
-      <>
+			<>
+			
 				<Section>
 					<SectionHeading>List of the Intruments Available</SectionHeading>
 					<LabelSection>
-						 { data !== null ? data.map(elem => (
+							{ data !== null ? data.map(elem => (
 							<TagLabel key={elem.id} selected={true} onClick={()=> this.addTagToSelected(elem) }>{ upcase(elem.name) }</TagLabel>
 						)) : ''} 
 					</LabelSection>
 				</Section>
-        
+				
 				<Section>
 					<SectionHeading>List of the Intruments Selected</SectionHeading>
 					<LabelSection>
-						 { this.state.selectedTags != [] ? this.state.selectedTags.map((elem, key) => (  
+							{ this.state.selectedTags != [] ? this.state.selectedTags.map((elem, key) => (  
 								<TagLabel key={key} >{upcase(elem.name)}</TagLabel>
-						  ))  : 'There are no selected tags' }
+							))  : 'There are no selected tags' }
 					</LabelSection>
 				</Section>
+		
       </>
     );
     
