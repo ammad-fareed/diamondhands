@@ -3,7 +3,6 @@ class CreateTags < ActiveRecord::Migration[6.0]
     create_table :tags do |t|
       t.string  :name
       t.references  :tag_type, null: false, foreign_key: true
-      t.references  :track, null: true
       t.timestamps
     end
   end

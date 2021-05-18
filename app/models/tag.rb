@@ -1,5 +1,5 @@
-class Tag < ApplicationRecord
+class Tag < ApplicationRecord  
   belongs_to  :tag_type
-  belongs_to  :track, optional: true
-  belongs_to  :user, optional: true
+  has_many  :instruments
+  has_many  :track_tags
 end

@@ -11,8 +11,8 @@ when 'development'
   puts '-'*100
   puts 'SEEDING'
   
-  desmond = User.create(email: 'desmond17@protonmail.com', password: 'password')
-  desmond = User.create(email: 'ammad.fareed303@gmail.com', password: 'ammad303')
+  desmond = User.create(email: 'desmond17@protonmail.com', password: 'password', artist_name: 'desmond')
+  desmond = User.create(email: 'ammad.fareed303@gmail.com', password: 'ammad303', artist_name: 'jhon_doe')
   AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
   AdminUser.create(email: 'desmond17@protonmail.com', password: 'A1poopsauce', password_confirmation: 'A1poopsauce')
   AdminUser.create(email: 'ammad.fareed786@gmail.com', password: 'ammad786', password_confirmation: 'ammad786')
@@ -45,7 +45,7 @@ when 'development'
                       'flute', 'euphonium', 'bagpipes', 'harp']
 
   instruments_tags.each do |instrument|
-    Tag.create( name: instrument, tag_type_id: instrument_type.id, track_id: nil )
+    Tag.create( name: instrument, tag_type_id: instrument_type.id)
   end
 when 'test'
   puts '-'*100
