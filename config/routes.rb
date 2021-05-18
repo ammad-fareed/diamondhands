@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   scope :api, module: :api do
     scope :v1, module: :v1 do
       resources :instruments, only: [ :index, :create ]
-      get '/selected-instruments', to: 'instruments#selected_instruments'
+      post '/selected-instruments', to: 'instruments#selected_instruments'
     end
   end
 

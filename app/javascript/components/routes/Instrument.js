@@ -67,6 +67,17 @@ class InstrumentTag extends React.Component {
 		fetch(apiEndpoint+'/instruments')
 			.then(res => res.json())
 			.then(data => this.setState({ data: data.data }));
+
+		fetch(apiEndpoint+'/selected-instruments', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ user_id: 1 })
+		})
+		.then(res => res.json() )
+		.then(data => this.setState({ selectedTags: data }))
+		.catch( error => console.error(error));
 	}
 
 	addTagToSelected(elem){
