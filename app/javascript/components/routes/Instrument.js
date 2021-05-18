@@ -55,7 +55,7 @@ class InstrumentTag extends React.Component {
 		this.state = {
 			data: null,
 			selectedTags: [],
-			user: this.props.user		
+			user: this.props.user
 		};
 	}
 
