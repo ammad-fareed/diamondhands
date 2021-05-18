@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { apiEndpoint, upcase } from '../util/helpers';
+import { apiEndpoint, upcase, filterOutOldData, initialDataList } from '../util/helpers';
 import tw from "tailwind-styled-components"
 
 // styled components
@@ -27,9 +27,8 @@ const TagLabel = tw.div`
 	border-1
 	border-white
 	rounded-lg
-	${props => props.selected ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600' }	
+	${props => props.selected ? 'bg-blue-100 text-blue-600 hover:bg-blue-800' : 'bg-green-100 text-green-600 hover:bg-green-800' }	
 	font-normal
-	hover:bg-blue-800
 	hover:text-white
 	hover:font-bold
 	hover:shadow-lg
@@ -60,14 +59,17 @@ class InstrumentTag extends React.Component {
 	}
 
 	componentDidMount(){
-		this.fetchData();
+		this.fetchData()
 	}
 
 	fetchData = () => {
+		// fetching the all instruments list
 		fetch(apiEndpoint+'/instruments')
 			.then(res => res.json())
-			.then(data => this.setState({ data: data.data }));
+			.then(data => this.setState({ data: data.data }))
+			.catch(error => console.error(error));
 
+		// fetching the selected tags if any 
 		fetch(apiEndpoint+'/selected-instruments', {
 			method: 'POST',
 			headers: {
@@ -77,10 +79,14 @@ class InstrumentTag extends React.Component {
 		})
 		.then(res => res.json() )
 		.then(data => this.setState({ selectedTags: data }))
-		.catch( error => console.error(error));
+		.catch(error => console.error(error));
 	}
 
 	addTagToSelected(elem){
+		// setting newly filterd data after every new addition
+		let filterdData= filterOutOldData(this.state.data, elem);
+		this.setState({ data: filterdData });
+		
 		let newResultList = this.state.selectedTags.concat(elem);
 		this.setState({ selectedTags: newResultList });
 		
@@ -94,18 +100,14 @@ class InstrumentTag extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.data);
-		let data = this.state.data;
-		let selectedTags = this.state.selectedTags;
-		console.log(selectedTags)
-
+		let data = initialDataList(this.state.data, this.state.selectedTags);
     return(
       <>
 				<Section>
 					<SectionHeading>List of the Intruments Available</SectionHeading>
 					<LabelSection>
 						 { data !== null ? data.map(elem => (
-							<TagLabel key={elem.id} onClick={()=> this.addTagToSelected(elem) }>{ upcase(elem.name) }</TagLabel>
+							<TagLabel key={elem.id} selected={true} onClick={()=> this.addTagToSelected(elem) }>{ upcase(elem.name) }</TagLabel>
 						)) : ''} 
 					</LabelSection>
 				</Section>
@@ -113,8 +115,8 @@ class InstrumentTag extends React.Component {
 				<Section>
 					<SectionHeading>List of the Intruments Selected</SectionHeading>
 					<LabelSection>
-						 { this.state.selectedTags != [] ? this.state.selectedTags.map(elem => (  
-								<TagLabel selected={true} key={elem.id} >{upcase(elem.name)}</TagLabel>
+						 { this.state.selectedTags != [] ? this.state.selectedTags.map((elem, key) => (  
+								<TagLabel key={key} >{upcase(elem.name)}</TagLabel>
 						  ))  : 'There are no selected tags' }
 					</LabelSection>
 				</Section>
