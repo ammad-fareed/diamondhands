@@ -70,10 +70,16 @@ class InstrumentTag extends React.Component {
 	}
 
 	addTagToSelected(elem){
-		console.log("here");
 		let newResultList = this.state.selectedTags.concat(elem);
 		this.setState({ selectedTags: newResultList });
-		console.log(this.state.selectedTags);
+		
+		fetch(apiEndpoint+'/instruments', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ data: { name: elem.name, id: elem.id, user_id: 1, tag_type_id: elem.tag_type_id }})
+		})
 	}
 
 	render() {
@@ -97,12 +103,10 @@ class InstrumentTag extends React.Component {
 					<SectionHeading>List of the Intruments Selected</SectionHeading>
 					<LabelSection>
 						 { this.state.selectedTags != [] ? this.state.selectedTags.map(elem => (  
-								<TagLabel selected={true}>{upcase(elem.name)}</TagLabel>
+								<TagLabel selected={true} key={elem.id} >{upcase(elem.name)}</TagLabel>
 						  ))  : 'There are no selected tags' }
 					</LabelSection>
 				</Section>
-
-				
       </>
     );
     

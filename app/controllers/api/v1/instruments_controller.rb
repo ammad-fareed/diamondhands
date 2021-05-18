@@ -18,6 +18,11 @@ class Api::V1::InstrumentsController < Api::ApiController
   end
 
   def selected_instruments
+    if params[:user_id].present?
+      @instruments = Instrument.includes(:tag).where(user_id: params[:user_id]).map { |instrument| instrument.tag.slice(:name, :id, :tag_type_id) }
+
+      render json: @instruments, status: :ok
+    end
   end
 
   private
