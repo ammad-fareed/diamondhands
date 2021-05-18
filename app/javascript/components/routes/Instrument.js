@@ -69,6 +69,7 @@ class InstrumentTag extends React.Component {
 	render() {
 		console.log(this.state.data);
 		let data = this.state.data;
+		let selectedTags = this.state.selectedTags;
 		
     return(
       <>
@@ -84,7 +85,7 @@ class InstrumentTag extends React.Component {
 				<Section>
 					<SectionHeading>List of the Intruments Available</SectionHeading>
 					<LabelSection>
-						 { selectedTags !== [] ? '' :'' }
+						 { selectedTags !== null ? '' :'' }
 					</LabelSection>
 				</Section>
 
