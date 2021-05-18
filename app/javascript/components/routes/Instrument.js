@@ -27,9 +27,12 @@ const TagLabel = tw.div`
 	border-1
 	border-white
 	rounded-lg
-	bg-blue-100
-	text-blue-600
+	${props => props.selected ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600' }	
 	font-normal
+	hover:bg-blue-800
+	hover:text-white
+	hover:font-bold
+	hover:shadow-lg
 `
 
 const LabelSection = tw.div`
@@ -66,26 +69,36 @@ class InstrumentTag extends React.Component {
 			.then(data => this.setState({ data: data.data }));
 	}
 
+	addTagToSelected(elem){
+		console.log("here");
+		let newResultList = this.state.selectedTags.concat(elem);
+		this.setState({ selectedTags: newResultList });
+		console.log(this.state.selectedTags);
+	}
+
 	render() {
 		console.log(this.state.data);
 		let data = this.state.data;
 		let selectedTags = this.state.selectedTags;
-		
+		console.log(selectedTags)
+
     return(
       <>
 				<Section>
-					<SectionHeading>List of the Intruments Selected</SectionHeading>
+					<SectionHeading>List of the Intruments Available</SectionHeading>
 					<LabelSection>
 						 { data !== null ? data.map(elem => (
-							<TagLabel key={elem.id}>{elem.name}</TagLabel>
+							<TagLabel key={elem.id} onClick={()=> this.addTagToSelected(elem) }>{elem.name.toUpperCase()}</TagLabel>
 						)) : ''} 
 					</LabelSection>
 				</Section>
         
 				<Section>
-					<SectionHeading>List of the Intruments Available</SectionHeading>
+					<SectionHeading>List of the Intruments Selected</SectionHeading>
 					<LabelSection>
-						 { selectedTags !== null ? '' :'' }
+						 { this.state.selectedTags != [] ? this.state.selectedTags.map(elem => (  
+							 <TagLabel selected={true}>{elem.name}</TagLabel>
+						   ))  : 'There are no selected tags' }
 					</LabelSection>
 				</Section>
 
