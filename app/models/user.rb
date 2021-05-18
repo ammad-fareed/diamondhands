@@ -8,7 +8,7 @@ class User < ApplicationRecord
   
   has_many :tracks
   has_many :likes
-  has_many :tags
+  has_many :instruments
 
   def artist_url
     "/artist/#{ artist_name.gsub(/\./, 'ooo_dot_ooo') }"

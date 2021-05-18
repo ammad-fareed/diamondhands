@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { apiEndpoint } from '../util/helpers';
+import { apiEndpoint, upcase } from '../util/helpers';
 import tw from "tailwind-styled-components"
 
 // styled components
@@ -88,7 +88,7 @@ class InstrumentTag extends React.Component {
 					<SectionHeading>List of the Intruments Available</SectionHeading>
 					<LabelSection>
 						 { data !== null ? data.map(elem => (
-							<TagLabel key={elem.id} onClick={()=> this.addTagToSelected(elem) }>{elem.name.toUpperCase()}</TagLabel>
+							<TagLabel key={elem.id} onClick={()=> this.addTagToSelected(elem) }>{ upcase(elem.name) }</TagLabel>
 						)) : ''} 
 					</LabelSection>
 				</Section>
@@ -97,8 +97,8 @@ class InstrumentTag extends React.Component {
 					<SectionHeading>List of the Intruments Selected</SectionHeading>
 					<LabelSection>
 						 { this.state.selectedTags != [] ? this.state.selectedTags.map(elem => (  
-							 <TagLabel selected={true}>{elem.name}</TagLabel>
-						   ))  : 'There are no selected tags' }
+								<TagLabel selected={true}>{upcase(elem.name)}</TagLabel>
+						  ))  : 'There are no selected tags' }
 					</LabelSection>
 				</Section>
 
