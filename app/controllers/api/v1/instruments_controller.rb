@@ -1,7 +1,9 @@
-class Api::V1::InstrumentsController < Api::ApiController
+class Api::V1::InstrumentsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
-    instrument_type = TagType.find_by(name: :instrument, published: true)
-    @instruments = Tag.where(tag_type_id: instrument_type.id).map { |instrument| instrument.slice(:id, :name, :tag_type_id, :created_at, :updated_at) }
+    instrument_type = TagType.instrument_type
+    @instruments = Tag.get_all_instruments(instrument_type.id)
 
     render json: { data: @instruments }, status: :ok
   end

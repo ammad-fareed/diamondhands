@@ -3,9 +3,5 @@ class TagType < ApplicationRecord
 
   TAG_TYPES = %w( genere instrument request ).freeze
 
-  # validates_with  :valid_tag_type?
-
-  def valid_tag_type?
-    TAG_TYPES.include?(self.name)
-  end
+  scope :instrument_type -> self.find_by(name: :instrument, published: true)
 end

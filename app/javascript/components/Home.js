@@ -100,7 +100,6 @@ class Home extends React.Component {
             <NavLink to="/">🎵 Fresh</NavLink>
             <NavLink to="/baked">🧁 Baked</NavLink>
             <NavLink to="/artists">🧞 Artists</NavLink>
-            <NavLink to="/instruments"> Instruments</NavLink>
             <NavLink
               to="/about-us"
               id="about-us-route-link"
