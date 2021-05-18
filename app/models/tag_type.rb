@@ -3,5 +3,5 @@ class TagType < ApplicationRecord
 
   TAG_TYPES = %w( genere instrument request ).freeze
 
-  scope :instrument_type -> self.find_by(name: :instrument, published: true)
+  scope :instrument_type, -> { find_by(name: :instrument, published: true) }
 end

@@ -12,8 +12,8 @@ export const filterOutOldData = (dataArr, currentElement) => {
 }
 
 export const initialDataList = (dataArr, selectedTags) => {
-  selectedTags.forEach(element => {
+  selectedTags != [] ? selectedTags.forEach(element => {
     dataArr = dataArr.filter(data => data.name !== element.name)
-  });
+  }) : dataArr;
   return dataArr;
 }
