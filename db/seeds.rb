@@ -19,7 +19,7 @@ when 'development'
 
   # populate tag_types table
   TagType::TAG_TYPES.each do |tag_type|
-    TagType.create(
+    TagType.find_or_create_by(
       name: tag_type
     )
   end
@@ -45,8 +45,29 @@ when 'development'
                       'flute', 'euphonium', 'bagpipes', 'harp']
 
   instruments_tags.each do |instrument|
-    Tag.create( name: instrument, tag_type_id: instrument_type.id)
+    Tag.find_or_create_by(name: instrument, tag_type_id: instrument_type.id)
   end
+
+  video_links = ['https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+                'http://techslides.com/demos/sample-videos/small.mp4',
+                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
+                ]
+
+  images_links = ['http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
+                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg',
+                  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg'
+                  ]
+  
+  user = User.find_by(email: 'user@example.com')
+  user = User.create!(email: 'user@example.com', artist_name: 'Test', password: 'password') unless user.present?
+  
+  video_links.each_with_index do |link, index|
+    track = Track.find_or_initialize_by(user_id: user.id, link: link, name: link.split('/').last.split('.').first, photo: images_links[index], video: true)
+    track.save(validate: false)
+  end
+  
 when 'test'
   puts '-'*100
   puts 'No seed yet'
