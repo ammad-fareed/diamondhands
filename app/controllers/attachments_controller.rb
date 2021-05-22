@@ -32,7 +32,6 @@ class AttachmentsController < ApplicationController
 
     url = s3_direct_post.url
     fields = s3_direct_post.fields
-    byebug
     render json: { url: url, fields: fields }, status: :created
   end
 
