@@ -8,9 +8,12 @@ import Baked from "./routes/Baked";
 import Artists from "./routes/Artists";
 import HomePage from "./routes/HomePage";
 import AboutUs from "./routes/AboutUs";
+import Instrument from "./routes/Instrument";
+
 import $ from "jquery";
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import tw from "tailwind-styled-components"
 
 import {
   BrowserRouter as Router,
@@ -66,6 +69,15 @@ const MenuX = styled.div`
   }
 `;
 
+const Legend = tw.h1`
+  text-red-300
+  text-2xl
+  font-bold
+  justify-center
+  items-center
+  m-20
+`
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -73,12 +85,18 @@ class Home extends React.Component {
     this.state = {
       menuVisible: window.innerWidth <= 600 ? false : true,
       redirectToAboutUs: false,
+      user: this.props.current_user,
+      loggedIn: false
     };
 
     $(".about-us-link").on("click", (e) => {
       $("#about-us-route-link").get(0).click();
       return false;
     });
+  }
+
+  componentDidMount(){
+    this.props.current_user !=null ? this.setState({ loggedIn: true }) : this.state.loggedIn;
   }
 
   render() {
@@ -115,6 +133,7 @@ class Home extends React.Component {
             <Route path="/baked" component={Baked} />
             <Route path="/artists" component={Artists} />
             <Route path="/about-us" component={AboutUs} />
+            { this.state.loggedIn ? <Route path="/instruments" component={()=> <Instrument user={this.state.user} />}  /> : <Legend>Please Login</Legend> }
           </Switch>
           <div className="footer">
             <Player />
