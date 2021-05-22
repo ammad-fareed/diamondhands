@@ -32,8 +32,8 @@ class AttachmentsController < ApplicationController
 
     url = s3_direct_post.url
     fields = s3_direct_post.fields
-
-    render json: { url: url, fields: fields }
+    byebug
+    render json: { url: url, fields: fields }, status: :created
   end
 
   def s3_blob_location
