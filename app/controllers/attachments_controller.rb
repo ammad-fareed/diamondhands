@@ -56,7 +56,7 @@ class AttachmentsController < ApplicationController
 
   def s3_resource
     @s3_resource ||= begin
-      creds = Aws::Credentials.new("AKIA4NGXA5VZ3EAA26XL", "+Oxg1vVP3TqFG9P+PvC8DNG6JtuqKRsioHAU9Iyp")
+      creds = Aws::Credentials.new(Rails.application.credentials.dig(:aws, :access_key_id), Rails.application.credentials.dig(:aws, :secret_access_key))
       Aws::S3::Resource.new(region: 'us-west-1', credentials: creds)
     end
   end
