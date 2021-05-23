@@ -15,6 +15,16 @@ Rails.application.routes.draw do
   get '/baked', to: 'pages#home'
   get '/artists', to: 'pages#home'
   get '/about-us', to: 'pages#home'
+  get '/instruments', to: 'pages#home'
+
+  # api collection for frontend operations.
+
+  scope :api, module: :api do
+    scope :v1, module: :v1 do
+      resources :instruments, only: [ :index, :create ]
+      post '/selected-instruments', to: 'instruments#selected_instruments'
+    end
+  end
 
   resources :tracks, only: [:index, :show, :destroy]
   get '/tracks/show_track/:id' => 'tracks#show_track'
