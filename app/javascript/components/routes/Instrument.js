@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import { apiEndpoint, upcase, filterOutOldData, initialDataList } from '../util/helpers';
-import tw from "tailwind-styled-components"
+import styled from 'styled-components';
 
 // styled components
-const Section = tw.section`
+const Section = styled.section`
 	flex
 	flex-col
 	items-center
@@ -14,13 +14,13 @@ const Section = tw.section`
 	p-10
 `
 
-const SectionHeading = tw.h1`
+const SectionHeading = styled.h1`
 	text-xl
 	text-gray-600
 	font-thinner
 `
 
-const TagLabel = tw.div`
+const TagLabel = styled.div`
   cursor-pointer
 	m-1
 	p-2
@@ -34,7 +34,7 @@ const TagLabel = tw.div`
 	hover:shadow-lg
 `
 
-const LabelSection = tw.div`
+const LabelSection = styled.div`
 	flex
 	flex-wrap
 	w-4/6
