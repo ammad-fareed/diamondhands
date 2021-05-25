@@ -14,7 +14,6 @@ import { ActionCableProvider } from 'react-actioncable-provider';
 import $ from "jquery";
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import tw from "tailwind-styled-components"
 
 import {
   BrowserRouter as Router,
@@ -70,13 +69,10 @@ const MenuX = styled.div`
   }
 `;
 
-const Legend = tw.h1`
-  text-red-300
-  text-2xl
-  font-bold
-  justify-center
-  items-center
-  m-20
+const Legend = styled.h1`
+  font-size: 2rem;
+  font-weight: 500;
+  color: #777;
 `
 
 class Home extends React.Component {

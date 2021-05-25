@@ -18,10 +18,9 @@
     "moment": "^2.26.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-actioncable-provider": "^2.0.0",
+    "react_ujs": "^2.6.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react_ujs": "^2.6.1",
     "styled-components": "^5.1.0",
     "tippy.js": "^6.2.3",
     "turbolinks": "^5.2.0"
@@ -29,7 +28,6 @@
   "version": "0.1.0",
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
-    "tailwind-styled-components": "^2.0.2",
     "webpack-dev-server": "^3.10.3"
   },
   "main": "index.js",
