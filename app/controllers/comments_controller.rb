@@ -14,11 +14,11 @@ class CommentsController < ApplicationController
       text: text_content
     )
 
-    render json: { 
-      comment: comment.attributes.merge({
+    comment = comment.attributes.merge({
         artist_name: comment.user.artist_name
-      }) 
-    }
+      })
+
+    ActionCable.server.broadcast "track_channel", comment: comment
   end
 
   def track_comments
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     return head(404) unless track.present?
 
     comments = track.comments.order("created_at ASC LIMIT 10000")
-
+    
     render json: { 
       thread: comments.preload(:user).map do |comment| 
         comment.attributes.merge({

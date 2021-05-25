@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import artistUrl from '../util/artistUrl';
 import AttachmentBox from './AttachmentBox';
+import {ActionCableConsumer} from 'react-actioncable-provider';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -174,7 +175,7 @@ class CommentBox extends React.Component {
 			text_content: this.state.newCommentText
 		}).done((res) => {
 			const newThread = this.state.thread;
-			newThread.push(res.comment);
+			// newThread.push(res.comment);
 			this.setState({
 				thread: newThread,
 				newCommentText: '',
@@ -211,6 +212,13 @@ class CommentBox extends React.Component {
 
 		return (
 			<Wrapper>
+				<ActionCableConsumer
+					channel="TrackChannel"
+					onReceived={() => this.loadData()}
+				>
+					<h1>{this.state.message}</h1>
+				</ActionCableConsumer>
+					
 				<Heading>
 					<HeadingSpan
 						onClick={() => {
