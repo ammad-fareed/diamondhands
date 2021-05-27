@@ -174,10 +174,10 @@ class CommentBox extends React.Component {
 		$.post(`/create_track_comment/${this.props.trackId}`, {
 			text_content: this.state.newCommentText
 		}).done((res) => {
-			const newThread = this.state.thread;
+			// const newThread = this.state.thread;
 			// newThread.push(res.comment);
 			this.setState({
-				thread: newThread,
+				// thread: newThread,
 				newCommentText: '',
 				loading: false
 			});
