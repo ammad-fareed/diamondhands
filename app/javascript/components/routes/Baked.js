@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
@@ -6,6 +7,7 @@ import $ from 'jquery';
 import { Rank } from './HomePage';
 import { Loader } from '../shared/AttachmentBox';
 import { AddATrackLink } from './HomePage';
+
 
 var tracks = [];
 
@@ -81,12 +83,15 @@ class Baked extends React.Component {
 		super(props);
 
 		this.state = {
-			loading: true
+			loading: true,
+			offset: 0,
+            data: [],
+            perPage: 10,
+            currentPage: 0
 		};
-	}
-
-	componentDidMount() {
-		this.getTracks();
+		this.handlePageClick = this
+            .handlePageClick
+            .bind(this);
 	}
 
 	getTracks = () => {
@@ -94,40 +99,74 @@ class Baked extends React.Component {
 
 		$.get('/baked_tracks').done((res) => {
 			tracks = res.baked_tracks;
+			const slice = tracks.slice(this.state.offset, this.state.offset + this.state.perPage)
 			this.setState({ loading: false });
 			this.forceUpdate();
 			window.clearQueue();
 			window.addTracksToQueue(res.baked_tracks);
 			if (window.masterAudioTag.paused) this.enableTrack(0, false);
+			const postData = slice.map((obj, i) => <SongBoxWrapper key={obj.id}>
+				<Rank>{i + 1}</Rank>
+				<SongBox
+					width={window.__good_height__}
+					height={window.__good_height__}
+					trackInfo={obj}
+					showRank={true}
+					enableTrack={() => {
+						this.enableTrack(i);
+					}}
+				/>
+			</SongBoxWrapper>)
+			this.setState({
+				pageCount: Math.ceil(tracks.length / this.state.perPage),
+			   
+				postData
+			})
 		});
 	};
+
+	handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.getTracks()
+        });
+
+    };
 
 	enableTrack = (i, play = true) => {
 		const newTrack = tracks[i];
 		window.masterShowTrack(newTrack, play);
 	};
 
+	componentDidMount() {
+		this.getTracks();
+	}
+
 	render() {
 		return (
 			<FlexContainer>
 				<InnerHeader>🧁 Top tracks</InnerHeader>
 				<Wrapper>
-					{tracks.map((obj, i) => {
-						return (
-							<SongBoxWrapper key={obj.id}>
-								<Rank>{i + 1}</Rank>
-								<SongBox
-									width={window.__good_height__}
-									height={window.__good_height__}
-									trackInfo={obj}
-									showRank={true}
-									enableTrack={() => {
-										this.enableTrack(i);
-									}}
-								/>
-							</SongBoxWrapper>
-						);
-					})}
+					<div>
+						{this.state.postData}
+						<ReactPaginate
+							previousLabel={"prev"}
+							nextLabel={"next"}
+							breakLabel={"..."}
+							breakClassName={"break-me"}
+							pageCount={this.state.pageCount}
+							marginPagesDisplayed={2}
+							pageRangeDisplayed={5}
+							onPageChange={this.handlePageClick}
+							containerClassName={"pagination"}
+							subContainerClassName={"pages pagination"}
+							activeClassName={"active"}/>
+					</div>				
 				</Wrapper>
 				{this.state.loading ? (
 					<LoaderWrapper>
