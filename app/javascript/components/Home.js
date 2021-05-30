@@ -99,7 +99,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="inner-wrapper">
-        <ActionCableProvider url={`ws://localhost:3000/cable?email=${this.state.user.email}`}>
+        <ActionCableProvider url={`ws://localhost:3000/cable?email=${ this.state.user != null ? this.state.user.email : null}`}>
           <Router>
             <MenuX
               onClick={() => {
