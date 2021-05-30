@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get '/pages/admin'
   end
 
+  mount ActionCable.server => '/cable'
+  
   get '/add-a-track', to: 'pages#add_a_track'
   resources :users, only: [:index]
   get '/artist/:id', to: 'users#show'
