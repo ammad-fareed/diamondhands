@@ -119,6 +119,8 @@ GEM
     concurrent-ruby (1.1.8)
     connection_pool (2.2.5)
     crass (1.0.6)
+    cypress-on-rails (1.10.1)
+      rack
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -333,6 +335,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  cypress-on-rails (~> 1.10, >= 1.10.1)
   devise
   dotenv-rails
   jbuilder (~> 2.7)

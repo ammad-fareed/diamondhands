@@ -46,6 +46,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'dotenv-rails'
+  gem 'cypress-on-rails', '~> 1.10', '>= 1.10.1'
 end
 
 group :development do
