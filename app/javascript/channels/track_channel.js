@@ -63,7 +63,7 @@ consumer.subscriptions.create({channel: "TrackChannel", track_id: id}, {
     return (
       `<Comment key=${data.id}>
           <CommentInfoWrapper>
-              <CommentAuthor to=${artistUrl(data.artist_name)}><a href="/artist/${data.artist_name}">${data.artist_name}</a>
+              <CommentAuthor to=${artistUrl(data.artist_name)}><a href="/artist/${data.artist_name}" style="background: white; color: #6b6b6b; text-decoration: none; font-size: 10px;">${data.artist_name}</a>
               </CommentAuthor>
               <CommentTime> <small style="color: #cccccc;">${moment(data.created_at).from(new Date())}</small></CommentTime>
           </CommentInfoWrapper><br />
