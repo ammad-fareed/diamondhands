@@ -39,6 +39,7 @@ gem 'activeadmin_addons'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'rexml'
 
 
 group :development, :test do
@@ -46,7 +47,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'dotenv-rails'
-  gem 'cypress-on-rails', '~> 1.10', '>= 1.10.1'
 end
 
 group :development do
