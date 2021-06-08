@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     return head(404) unless track.present?
 
     text_content = params[:text_content]
-
+    count = track.comments.count
     comment = Comment.create!(
       track:  track,
       user: current_user,
@@ -15,10 +15,12 @@ class CommentsController < ApplicationController
     )
 
     comment = comment.attributes.merge({
-        artist_name: comment.user.artist_name
+        artist_name: comment.user.artist_name,
+        count: count
       })
+   
+    ActionCable.server.broadcast("track_channel_#{params[:track_id]}", comment.as_json)
 
-    ActionCable.server.broadcast "track_channel", comment: comment.as_json
   end
 
   def track_comments
