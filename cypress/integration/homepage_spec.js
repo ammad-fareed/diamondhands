@@ -1,9 +1,6 @@
-describe('Rails using factory bot examples', function() {
-    // beforeEach(() => {
-    //     cy.visit('http://localhost:3000/')
-    // })
+describe('Homepage', function() {
   
-    it('using single factory bot', function() {
+    it('Should visit the root page', function() {
       cy.visit('http://localhost:3000/')
       cy.contains('New tracks')
     })

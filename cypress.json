@@ -1,3 +1,5 @@
+
 {
-    "pageLoadTimeout": 400000
+    "baseUrl": "http://localhost:3000",
+    "responseTimeout": 60000
 }
