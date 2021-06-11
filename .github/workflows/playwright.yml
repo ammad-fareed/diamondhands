@@ -1,4 +1,4 @@
-name: 'Cypress and Rails'
+name: 'Playwright and Rails'
 
 env:
   RUBY_VERSION: 3.0.1
@@ -51,15 +51,9 @@ jobs:
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:migrate RAILS_ENV=test
 
-      - name: save cypress version
-        run: npx cypress -v > .cypress-version
-      
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-cache-v3-${{ runner.os }}-${{ hashFiles('.cypress-version') }}
-      - run: yarn cypress install
+      - name: Playwright
+        run: yarn add playwright
       
       - name: Run tests
-        run: bundler exec rails server -e test -p 3000 & yarn cypress run
+        run: bundler exec rails server -e test -p 3000 & yarn run playwright
         
