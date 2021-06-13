@@ -211,14 +211,7 @@ class CommentBox extends React.Component {
 						];
 
 		return (
-			<Wrapper>
-				<ActionCableConsumer
-					channel="TrackChannel"
-					onReceived={() => this.loadData()}
-				>
-					<h1>{this.state.message}</h1>
-				</ActionCableConsumer>
-					
+			<Wrapper>				
 				<Heading>
 					<HeadingSpan
 						onClick={() => {
@@ -254,7 +247,7 @@ class CommentBox extends React.Component {
 				/>
 				{!this.state.showAttachments && (
 					<React.Fragment>
-						<ThreadBox>
+						<ThreadBox id="comments">
 							{thread.map((comment, i) => {
 								return (
 									<Comment key={i}>

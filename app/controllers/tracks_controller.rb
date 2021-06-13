@@ -56,7 +56,7 @@ class TracksController < ApplicationController
   end
 
   def s3_direct_post
-    s3_bucket = s3_resource.bucket('beatoftheday')
+    s3_bucket = s3_resource.bucket(Rails.application.credentials.dig(:aws, :bucket))
     s3_direct_post = s3_bucket.presigned_post(
       key: "audio/#{SecureRandom.uuid}/${filename}",
       success_action_status: '201',
@@ -114,7 +114,7 @@ class TracksController < ApplicationController
   def s3_resource
     @s3_resource ||= begin
       creds = Aws::Credentials.new(Rails.application.credentials.dig(:aws, :access_key_id), Rails.application.credentials.dig(:aws, :secret_access_key))
-      Aws::S3::Resource.new(region: 'us-west-1', credentials: creds)
+      Aws::S3::Resource.new(region: Rails.application.credentials.dig(:aws, :region), credentials: creds)
     end
   end
 

@@ -39,6 +39,7 @@ gem 'activeadmin_addons'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'rexml'
 
 gem 'graphql', '~> 1.12', '>= 1.12.12'
 

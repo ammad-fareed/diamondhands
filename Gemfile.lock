@@ -364,6 +364,7 @@ DEPENDENCIES
   rails (~> 6.0.2, >= 6.0.2.2)
   react-rails
   redis (~> 4.2, >= 4.2.5)
+  rexml
   rubocop (~> 1.16, >= 1.16.1)
   sass-rails (>= 6)
   selenium-webdriver
