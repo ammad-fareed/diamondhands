@@ -41,12 +41,16 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'aws-sdk-s3', '~> 1'
 gem 'rexml'
 
+gem 'graphql', '~> 1.12', '>= 1.12.12'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'dotenv-rails'
+  gem 'cypress-on-rails', '~> 1.10', '>= 1.10.1'
+  gem 'graphiql-rails', '~> 1.7'
+  gem 'rubocop', '~> 1.16', '>= 1.16.1'
 end
 
 group :development do
