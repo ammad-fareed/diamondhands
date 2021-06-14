@@ -56,4 +56,3 @@ jobs:
       
       - name: Run tests
         run: bundler exec rails server -e test -p 3000 & npm run test
-        
