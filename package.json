@@ -33,9 +33,13 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@playwright/test": "^1.12.1",
     "babel-plugin-styled-components": "^1.10.7",
-    "cypress": "^7.4.0",
+    "playwright": "^1.12.1",
     "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "test": "playwright test"
   },
   "main": "index.js",
   "author": "Desmond Sadler <desmond17@protonmail.com>",
