@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import $ from "jquery";
+import Test from '../shared/Test';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -53,6 +54,7 @@ class TrackShow extends React.Component {
   render() {
     return (
       <FlexContainer>
+        <Test />
         <SmallerHeader>
           Beat of the Day is a community for musicians. Have you ever wanted to
           jam with people all around the world in different places? Simply

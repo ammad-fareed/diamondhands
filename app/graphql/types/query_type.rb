@@ -9,5 +9,6 @@ module Types
 
     field :fetch_users, resolver: Queries::FetchUsers
     field :fetch_user, resolver: Queries::FetchUser
+    field :fetch_tracks, resolver: Queries::FetchTracks
   end
 end
