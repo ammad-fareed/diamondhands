@@ -5,12 +5,7 @@ import * as _ from "lodash";
 
 // Store <-> client state
 class Muon extends React.Component {
-  model;
-  attr;
-  storeKey;
-  endpoint;
-  reactSetState;
-
+ 
   constructor(props) {
     super(props);
 

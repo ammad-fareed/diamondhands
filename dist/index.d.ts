@@ -4,6 +4,5 @@ export { default as Controller } from "./src/Controller";
 export { default as Model } from "./src/Model";
 export { default as Molecule } from "./src/Molecule";
 export { default as store } from "./src/store";
-export default () => {
-  console.log("strawberry");
-};
+declare const _default: () => void;
+export default _default;

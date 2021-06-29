@@ -3,23 +3,25 @@
 // import * as React from "react";
 import Proton from "./Proton";
 import store from "./store";
-// import View from './components/View'
+// import Value from './components/Value'
 
 let value = null;
 
 class Resolver extends Proton {
   value() {
     const Value = this.props.Value;
-    // return (
-    //   <Value attr={this.attr} model={this.model} />
-    // )
+    return (
+      <Value attr={this.attr} model={this.model} />
+    )
   }
+  
   edit() {
     const Edit = this.props.Edit;
-    // return (
-    //   // <Edit attr={this.attr} model={this.model} />
-    // )
+    return (
+      <Edit attr={this.attr} model={this.model} />
+    )
   }
+
   query(variables) {
     return this.model.controller.gqlAttribute({
       client: this.model.controller.client(),
@@ -29,12 +31,12 @@ class Resolver extends Proton {
   }
 }
 // const resolver = ({ endpoint, model, attr, Value, Edit }) => {
-const resolver = ({ endpoint, model, attr }) => {
+const resolver = ({ endpoint, model, attr, Value, Edit }) => {
   return new Resolver({
     model: model,
     attr: attr,
-    // Value: Value,
-    // Edit: Edit,
+    Value: Value,
+    Edit: Edit,
   });
 };
 export default resolver;

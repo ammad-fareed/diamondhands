@@ -1,5 +1,6 @@
 // @ts-nocheck
 import _ from "lodash";
+import React from 'react';
 
 class Store {
   private state;
