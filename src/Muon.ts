@@ -11,7 +11,8 @@ class Muon extends React.Component {
 
     this.model = props.model;
     this.attr = props.attr;
-    this.storeKey = props.storeKey || this.model.getKey(this.attr);
+    this.storeKey =
+      props.storeKey || (this.model && this.model.getKey(this.attr));
     this.endpoint = props.endpoint;
 
     store.onUpdate(this.refresh);
