@@ -1,7 +1,7 @@
 // @ts-nocheck
-import * as React from "react";
+import React from "react";
 import store from "./store";
-import * as _ from "lodash";
+import _ from "lodash";
 
 // Store <-> client state
 class Muon extends React.Component {

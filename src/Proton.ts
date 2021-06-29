@@ -1,7 +1,7 @@
 // @ts-nocheck
 import store from "./store";
 import Muan from "./Muon";
-import * as _ from "lodash";
+import _ from "lodash";
 
 // Server <-> client state
 const _finishedRequests = [];

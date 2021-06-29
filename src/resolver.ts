@@ -1,11 +1,8 @@
 // @ts-nocheck
 
-// import * as React from "react";
+import React from "react";
 import Proton from "./Proton";
 import store from "./store";
-// import Value from './components/Value'
-
-let value = null;
 
 class Resolver extends Proton {
   value() {
