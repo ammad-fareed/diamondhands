@@ -1,5 +1,8 @@
+// @ts-nocheck
+
 import Model from 'diamondhands';
 import TracksController from '../controllers/TracksController';
+import { GetTracks } from "../operations/GetTracks";
 
 class Track extends Model {
   constructor(){

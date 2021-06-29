@@ -1,5 +1,5 @@
+// @ts-nocheck
 import { ApolloController } from 'diamondhands';
-import { GetTracks } from "../operations/GetTracks";
 
 class TracksController extends ApolloController {
   accessor() {
